@@ -114,7 +114,6 @@ REEEEEEERR
 RRRRRRRRRR
 '''
 
-
 import sys
 
 
@@ -122,9 +121,18 @@ def editor(command):
     '''Editor Gráfico que retorna um bitmap'''
 
     if command[0] == 'I':
-        return '00000\n00000\n00000\n00000\n00000\n00000\n'
+        return create_matrix(command)
     else:
         return 'Invalid command!'
+
+
+def create_matrix(command):
+    '''
+    I M N
+    Cria uma nova matriz MxN. Todos os pixels são brancos (O).
+    '''
+    return '00000\n00000\n00000\n00000\n00000\n00000\n'
+
 
 if __name__ == '__main__':
 
