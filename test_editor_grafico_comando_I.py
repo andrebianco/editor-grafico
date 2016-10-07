@@ -16,6 +16,10 @@ from editor_grafico import editor
 class EditorGraficoTest(unittest.TestCase):
     '''Suite de testes do Editor Gráfico'''
 
+    def setUp(self):
+        if os.path.exists('matrix.txt'):
+            os.remove('matrix.txt')
+
     def test_send_command_I_5_6(self):
         result = editor(['I', 5, 6])
         expected = '00000\n00000\n00000\n00000\n00000\n00000\n'
