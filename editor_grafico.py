@@ -142,7 +142,13 @@ def create_matrix(command):
     if columns == '' or rows == 0:
         return 'Invalid command!'
 
-    return '00000\n00000\n00000\n00000\n00000\n00000\n'
+    row = 0
+
+    while row != rows:
+        matrix += columns + '\n'
+        row += 1
+
+    return matrix
 
 
 if __name__ == '__main__':

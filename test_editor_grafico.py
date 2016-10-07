@@ -20,6 +20,11 @@ class EditorGraficoTest(unittest.TestCase):
         expected = '00000\n00000\n00000\n00000\n00000\n00000\n'
         self.assertEqual(result, expected)
 
+    def test_send_command_I_2_2(self):
+        result = editor(['I', 2, 2])
+        expected = '00\n00\n'
+        self.assertEqual(result, expected)
+
     def test_send_command_I_x_2(self):
         result = editor(['I', 'x', 2])
         expected = 'Invalid command!'
