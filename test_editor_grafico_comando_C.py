@@ -24,3 +24,17 @@ class EditorGraficoTest(unittest.TestCase):
         result = editor(['C'])
         expected = 'Nothing to do!'
         self.assertEqual(result, expected)
+
+    def test_send_command_C(self):
+        editor(['I', 5, 6])
+        result = editor(['C'])
+        expected = '00000\n00000\n00000\n00000\n00000\n00000\n'
+        self.assertEqual(result, expected)
+
+    def test_send_command_C_effective(self):
+        file = open('matrix.txt', 'w')
+        file.write('0A000\n0000A\n0A000\n00000\n000A0\n00A00\n')
+        file.close()
+        result = editor(['C'])
+        expected = '00000\n00000\n00000\n00000\n00000\n00000\n'
+        self.assertEqual(result, expected)

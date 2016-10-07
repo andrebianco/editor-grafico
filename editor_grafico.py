@@ -123,13 +123,15 @@ current_matrix = ''
 def editor(command):
     '''Editor Gráfico que retorna um bitmap'''
 
-    if command[0] == 'I':
-        return create_matrix(command)
-    elif command[0] == 'C':
-        return clear_matrix()
-    else:
+    try:
+        if command[0] == 'I':
+            return create_matrix(command)
+        elif command[0] == 'C':
+            return clear_matrix()
+        else:
+            return 'Invalid command!'
+    except IndexError:
         return 'Invalid command!'
-
 
 def create_matrix(command):
     '''
@@ -154,9 +156,11 @@ def create_matrix(command):
         matrix += columns + '\n'
         row += 1
 
-    write_matrix_on_file(matrix)
+    current_matrix = matrix
 
-    return matrix
+    write_matrix_on_file(current_matrix)
+
+    return current_matrix
 
 
 def clear_matrix():
@@ -166,10 +170,23 @@ def clear_matrix():
     ficam brancos (O).
     '''
 
-    if read_matrix_on_file() == '':
+    current_matrix = read_matrix_on_file()
+
+    if current_matrix == '':
         return 'Nothing to do!'
     else:
-        return '00000\n00000\n00000\n00000\n00000\n00000\n'
+
+        matrix_list = list(current_matrix)
+
+        for idx, char_ in enumerate(matrix_list):
+            if char_ not in ('0', '\n'):
+                matrix_list[idx] = '0'
+
+        current_matrix = ''.join(matrix_list)
+
+        write_matrix_on_file(current_matrix)
+
+        return current_matrix
 
 
 def write_matrix_on_file(matrix):
