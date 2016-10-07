@@ -154,7 +154,7 @@ def create_matrix(command):
         matrix += columns + '\n'
         row += 1
 
-    write_matrix_on_file(current_matrix)
+    write_matrix_on_file(matrix)
 
     return matrix
 
@@ -166,14 +166,15 @@ def clear_matrix():
     ficam brancos (O).
     '''
 
-    if current_matrix == '':
+    if read_matrix_on_file() == '':
         return 'Nothing to do!'
-
-    return '00000\n00000\n00000\n00000\n00000\n00000\n'
+    else:
+        return '00000\n00000\n00000\n00000\n00000\n00000\n'
 
 
 def write_matrix_on_file(matrix):
     '''Grava a matriz em um arquivo texto'''
+
     file = open('matrix.txt', 'w')
     file.write(matrix)
     file.close()
@@ -181,7 +182,15 @@ def write_matrix_on_file(matrix):
 
 def read_matrix_on_file():
     '''Lê a matriz de um arquivo texto'''
-    pass
+
+    try:
+        file = open('matrix.txt', encoding='utf-8')
+        current_matrix = file.read()
+        file.close()
+    except FileNotFoundError:
+        current_matrix = ''
+
+    return current_matrix
 
 
 if __name__ == '__main__':
