@@ -9,6 +9,7 @@ DATA:  2016-10-04
 '''
 
 import unittest
+import os
 from editor_grafico import editor
 
 
@@ -19,6 +20,12 @@ class EditorGraficoTest(unittest.TestCase):
         result = editor(['I', 5, 6])
         expected = '00000\n00000\n00000\n00000\n00000\n00000\n'
         self.assertEqual(result, expected)
+
+    def test_send_command_exist_file(self):
+        editor(['I', 5, 6])
+        result = os.path.exists('matrix.txt')
+        expected = True
+        self.assertTrue(result, expected)
 
     def test_send_command_I_2_2(self):
         result = editor(['I', 2, 2])

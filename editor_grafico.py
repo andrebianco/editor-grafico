@@ -154,6 +154,8 @@ def create_matrix(command):
         matrix += columns + '\n'
         row += 1
 
+    write_matrix_on_file(current_matrix)
+
     return matrix
 
 
@@ -187,7 +189,5 @@ if __name__ == '__main__':
     command = sys.argv[1:]
 
     current_matrix = editor(command)
-
-    write_matrix_on_file(current_matrix)
 
     print(current_matrix)
