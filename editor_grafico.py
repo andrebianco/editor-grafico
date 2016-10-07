@@ -115,6 +115,7 @@ RRRRRRRRRR
 '''
 
 import sys
+from PIL import Image, ImageDraw, ImageFont
 
 
 current_matrix = ''
@@ -128,10 +129,15 @@ def editor(command):
             return create_matrix(command)
         elif command[0] == 'C':
             return clear_matrix()
+        elif command[0] == 'L':
+            return color_matrix(command)
+        elif command[0] == 'S':
+            return save_bmp(command)
         else:
             return 'Invalid command!'
     except IndexError:
         return 'Invalid command!'
+
 
 def create_matrix(command):
     '''
@@ -157,6 +163,36 @@ def create_matrix(command):
         row += 1
 
     current_matrix = matrix
+
+    write_matrix_on_file(current_matrix)
+
+    return current_matrix
+
+
+def color_matrix(command):
+    '''
+    L X Y C
+    Colore um pixel de coordenadas (X,Y) na cor C.
+    '''
+
+    x, y, len_column, color = 0, 0, 0, ''
+
+    try:
+        x = int(command[1])
+        y = int(command[2])
+        color = command[3]
+    except ValueError:
+        return 'Invalid command!'
+
+    if not isinstance(color, str):
+        return 'Invalid command!'
+
+    if color == '':
+        return 'Invalid command!'
+
+    current_matrix = read_matrix_on_file()
+
+    map_file(current_matrix)
 
     write_matrix_on_file(current_matrix)
 
@@ -208,6 +244,46 @@ def read_matrix_on_file():
         current_matrix = ''
 
     return current_matrix
+
+
+def map_file(matrix):
+    '''Faz o mapeamento da matriz'''
+
+    rows = []
+    row = []
+    columns = []
+
+    for c in matrix:
+        if c != '\n':
+            columns.append(c)
+        else:
+            row.append(columns)
+            rows.append(row)
+
+    print(rows)
+
+
+def unmap_file(matrix):
+    '''Desfaz o mapeamento da matriz'''
+
+    pass
+
+
+def save_bmp(command):
+    '''Salva o arquivo bitmap'''
+
+    file_name = command[1]
+
+    image = Image.new("RGB", (500, 500))
+    draw = ImageDraw.Draw(image)
+    font = ImageFont.truetype("Arvo-Regular.ttf", 25)
+    text = read_matrix_on_file()
+
+    draw.text((0, 0), text, font=font)
+
+    file = open(file_name, "wb")
+    image.save(file, "BMP")
+    image.show()
 
 
 if __name__ == '__main__':

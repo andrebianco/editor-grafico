@@ -20,6 +20,11 @@ class EditorGraficoTest(unittest.TestCase):
         if os.path.exists('matrix.txt'):
             os.remove('matrix.txt')
 
+    def test_send_command_first_I(self):
+        result = editor(['I'])
+        expected = 'Invalid command!'
+        self.assertEqual(result, expected)
+
     def test_send_command_I_5_6(self):
         result = editor(['I', 5, 6])
         expected = '00000\n00000\n00000\n00000\n00000\n00000\n'
