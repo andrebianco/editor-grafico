@@ -131,6 +131,14 @@ def create_matrix(command):
     I M N
     Cria uma nova matriz MxN. Todos os pixels são brancos (O).
     '''
+    columns, rows, matrix = 0, 0, ''
+
+    try:
+        columns = '0' * int(command[1])
+        rows = int(command[2])
+    except ValueError:
+        return 'Invalid command!'
+
     return '00000\n00000\n00000\n00000\n00000\n00000\n'
 
 
