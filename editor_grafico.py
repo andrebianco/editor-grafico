@@ -117,11 +117,16 @@ RRRRRRRRRR
 import sys
 
 
+current_matrix = ''
+
+
 def editor(command):
     '''Editor Gráfico que retorna um bitmap'''
 
     if command[0] == 'I':
         return create_matrix(command)
+    elif command[0] == 'C':
+        return clear_matrix()
     else:
         return 'Invalid command!'
 
@@ -151,8 +156,19 @@ def create_matrix(command):
     return matrix
 
 
+def clear_matrix():
+    '''
+    C
+    Limpa a matriz. O tamanho permanece o mesmo. Todos os pixels
+    ficam brancos (O).
+    '''
+    return '00000\n00000\n00000\n00000\n00000\n00000\n'
+
+
 if __name__ == '__main__':
 
     command = sys.argv[1:]
 
-    print(editor(command))
+    current_matrix = editor(command)
+
+    print(current_matrix)
