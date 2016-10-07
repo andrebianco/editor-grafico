@@ -136,6 +136,7 @@ def create_matrix(command):
     I M N
     Cria uma nova matriz MxN. Todos os pixels são brancos (O).
     '''
+
     columns, rows, matrix = 0, 0, ''
 
     try:
@@ -162,7 +163,21 @@ def clear_matrix():
     Limpa a matriz. O tamanho permanece o mesmo. Todos os pixels
     ficam brancos (O).
     '''
+
+    if current_matrix == '':
+        return 'Nothing to do!'
+
     return '00000\n00000\n00000\n00000\n00000\n00000\n'
+
+
+def write_matrix_on_file():
+    '''Grava a matriz em um arquivo texto'''
+    pass
+
+
+def read_matrix_on_file():
+    '''Lê a matriz de um arquivo texto'''
+    pass
 
 
 if __name__ == '__main__':

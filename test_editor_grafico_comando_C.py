@@ -15,7 +15,7 @@ from editor_grafico import editor
 class EditorGraficoTest(unittest.TestCase):
     '''Suite de testes do Editor Gráfico'''
 
-    def test_send_command_C(self):
+    def test_send_command_first_C(self):
         result = editor(['C'])
-        expected = '00000\n00000\n00000\n00000\n00000\n00000\n'
+        expected = 'Nothing to do!'
         self.assertEqual(result, expected)
