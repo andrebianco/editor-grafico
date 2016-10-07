@@ -170,9 +170,11 @@ def clear_matrix():
     return '00000\n00000\n00000\n00000\n00000\n00000\n'
 
 
-def write_matrix_on_file():
+def write_matrix_on_file(matrix):
     '''Grava a matriz em um arquivo texto'''
-    pass
+    file = open('matrix.txt', 'w')
+    file.write(matrix)
+    file.close()
 
 
 def read_matrix_on_file():
@@ -185,5 +187,7 @@ if __name__ == '__main__':
     command = sys.argv[1:]
 
     current_matrix = editor(command)
+
+    write_matrix_on_file(current_matrix)
 
     print(current_matrix)
