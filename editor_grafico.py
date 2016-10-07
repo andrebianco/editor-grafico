@@ -120,8 +120,11 @@ import sys
 
 def editor(command):
     '''Editor Gráfico que retorna um bitmap'''
-    return '00000\n00000\n00000\n00000\n00000\n00000\n'
 
+    if command[0] == 'I':
+        return '00000\n00000\n00000\n00000\n00000\n00000\n'
+    else:
+        return 'Invalid command!'
 
 if __name__ == '__main__':
 
