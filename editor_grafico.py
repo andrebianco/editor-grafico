@@ -139,6 +139,9 @@ def create_matrix(command):
     except ValueError:
         return 'Invalid command!'
 
+    if columns == '' or rows == 0:
+        return 'Invalid command!'
+
     return '00000\n00000\n00000\n00000\n00000\n00000\n'
 
 

@@ -24,3 +24,13 @@ class EditorGraficoTest(unittest.TestCase):
         result = editor(['I', 'x', 2])
         expected = 'Invalid command!'
         self.assertEqual(result, expected)
+
+    def test_send_command_I_0_4(self):
+        result = editor(['I', 0, 4])
+        expected = 'Invalid command!'
+        self.assertEqual(result, expected)
+
+    def test_send_command_I_2_0(self):
+        result = editor(['I', 2, 0])
+        expected = 'Invalid command!'
+        self.assertEqual(result, expected)
